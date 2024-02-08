@@ -1,9 +1,10 @@
-NO /nfs/homes/about/Documents/cub2/textures/grass.xpm
-SO /nfs/homes/about/Documents/cub2/textures/sand.xpm
-WE /nfs/homes/about/Documents/cub2/textures/stone.xpm
-EA /nfs/homes/about/Documents/cub2/textures/wood.xpm
+NO /nfs/homes/about/Documents/alae/textures/grass.xpm
+SO /nfs/homes/about/Documents/alae/textures/sand.xpm
+WE /nfs/homes/about/Documents/alae/textures/stone.xpm
+EA /nfs/homes/about/Documents/alae/textures/wood.xpm
+C 225,30,0  
 F 220,100,0
-C 225,30,0
+
 
 11111111111111111
 10000000000000001

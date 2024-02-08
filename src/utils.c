@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:28:19 by about             #+#    #+#             */
-/*   Updated: 2024/02/03 18:09:09 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:24:03 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,23 @@ void	initial(t_info *info)
 	info->found_ea = 0;
 	info->found_f = 0;
 	info->found_c = 0;
+}
+void	check_spaces(char *line)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (line[i])
+	{
+		if (j == 0 && ft_isdigit(line[i]))
+			j = 1;
+		if (j == 1 && (line[i] == ' ' || line[i] == '\t'))
+		{
+			if (line[i + 1] && ft_isdigit(line[i + 1]))
+				ft_error("Error: ivalid color format!");
+		}
+		i++;
+	}
 }

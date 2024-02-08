@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:44:09 by about             #+#    #+#             */
-/*   Updated: 2024/02/05 23:18:40 by about            ###   ########.fr       */
+/*   Updated: 2024/02/06 19:11:00 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,19 +127,19 @@ int		parse_rgb(char **line, t_info *info, int flag);
 void	check_spaces(char *line);
 void	check_fill(char **line, int *r ,int *g, int *b);
 void	cubname(char *filename, char *name, char *error);
-void	parse_colors_c(char *line, t_info *info, int *i, int *flag);
-void	parse_colors_f(char *line, t_info *info, int *i, int *flag);
+void	parse_colors_c(char *line, t_info *info, int *flag);
+void	parse_colors_f(char *line, t_info *info, int *flag);
 void	check_missing(t_info *info);
+int		conditions(t_info *info, int j);
 // parse map
 int		find_index(char **map);
 void	cutmap(t_info *info);
 void	check_map(char **map, int i, int *player);
 void	check_first(char *wall);
 void	parse_map(t_info *info);
-void	assign(char **place, char *line, int *i);
 void	check_missing(t_info *info);
 char	*parse_path(char *line);
-void	assignthis(char **texture, char *line, int *i, int *flag);
+void	assignthis(char **texture, char *line, int *flag);
 // game graphics
 void    launch_game(t_info *info, t_game *game, t_player *player, t_img *img);
 void    render_2dmap(t_game *game);

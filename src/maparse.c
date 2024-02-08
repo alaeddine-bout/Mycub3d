@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:42:55 by about             #+#    #+#             */
-/*   Updated: 2024/02/05 20:00:34 by about            ###   ########.fr       */
+/*   Updated: 2024/02/08 16:52:16 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	check_map(char **map, int i, int *player)
 		if(ft_strchr("NSEW0", map[i][j]))
 		{
 			if (map[i + 1] && j > ft_strlen(map[i + 1]))
-				ft_error("Error:");
+				ft_error("Error: close map please!");
 			if (j <= ft_strlen(map[i]) - 1 && (!map[i - 1][j]
 				|| !ft_strchr("NSEW01", map[i - 1][j])))
-				ft_error("Error: thella.");
+				ft_error("Error: invalid map!");
 			if (!ft_strchr("NSEW01", map[i + 1][j]))
 				ft_error("Error: that shouldn't be there!");
 			if (!ft_strchr("NSEW01", map[i][j + 1]))
@@ -39,20 +39,6 @@ void	check_map(char **map, int i, int *player)
 	}
 }
 
-void	check_first(char *wall)
-{
-	int	i;
-
-	i = 0;
-	while (wall[i])
-	{
-		if (wall[i] == '\n')
-			break;
-		if (wall[i] != '1' && wall[i] != ' ' && wall[i] != '\t')
-			ft_error("Error: map should be closed by walls");
-		i++;
-	}
-}
 int	find_index(char **map)
 {
 	int	i;
@@ -66,23 +52,12 @@ int	find_index(char **map)
 	}
 	return(i);
 }
-
-void cutmap(t_info *info)
+void	cutmaputil(t_info *info, int i)
 {
-	int i;
-	int x;
-	int j;
-	int len;
+	int	j;
+	int	x;
+	int	len;
 
-	i = find_index(info->map);
-	x = 0;
-	while (info->map[i])
-	{
-		i++;
-		x++;
-	}
-	info->map_2 = (char **)malloc(sizeof(char *) * (x + 1));
-	i = find_index(info->map);
 	x = 0;
 	while (info->map[i])
 	{
@@ -101,6 +76,23 @@ void cutmap(t_info *info)
 	info->map_2[x] = NULL;
 }
 
+void cutmap(t_info *info)
+{
+	int i;
+	int x;
+
+	i = find_index(info->map);
+	x = 0;
+	while (info->map[i])
+	{
+		i++;
+		x++;
+	}
+	info->map_2 = (char **)malloc(sizeof(char *) * (x + 1));
+	i = find_index(info->map);
+	cutmaputil(info, i);
+}
+
 void	parse_map(t_info *info)
 {
 	int	i;
@@ -112,7 +104,7 @@ void	parse_map(t_info *info)
 	while (info->map_2[i])
 	{
 		if (info->map_2[i][0] == '0' || info->map_2[i][0] == '\0')
-			ft_error("Error: ????");
+			ft_error("Error: Errror: invalid map!");
 		if (i == 0)
 			check_first(info->map_2[i]);
 		else if (!info->map_2[i + 1])
@@ -120,7 +112,7 @@ void	parse_map(t_info *info)
 		else
 			check_map(info->map_2, i , &player);
 		if (info->map_2[i][ft_strlen(info->map_2[i])] == '0')
-			ft_error("Error: heyd dak zero");
+			ft_error("Error: invalid map!");
 		i++;
 	}
 	if (player != 1)

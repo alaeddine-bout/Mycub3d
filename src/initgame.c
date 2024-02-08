@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:41:08 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/06 16:58:56 by about            ###   ########.fr       */
+/*   Updated: 2024/02/08 16:45:24 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -452,11 +452,24 @@ void	assign_textures(t_info *info, t_game *game)
 {
 	int texture_height;
 	int texture_width;
-	printf("%s\n", info->north);
-	game->north = mlx_xpm_file_to_image(game->mlx, info->north, &texture_width, &texture_height);
-	game->south = mlx_xpm_file_to_image(game->mlx, info->south, &texture_width, &texture_height);
-	game->west = mlx_xpm_file_to_image(game->mlx, info->west, &texture_width, &texture_height);
-	game->east = mlx_xpm_file_to_image(game->mlx, info->east, &texture_width, &texture_height);
+	
+	game->north = mlx_xpm_file_to_image(game->mlx, info->north,
+					&texture_width, &texture_height);
+	if(!game->north)
+		ft_error("Error: xpm file not found");
+	game->south = mlx_xpm_file_to_image(game->mlx, info->south,
+					&texture_width, &texture_height);
+	if(!game->south)
+		ft_error("Error: xpm file not found");
+	game->west = mlx_xpm_file_to_image(game->mlx, info->west,
+					&texture_width, &texture_height);
+	if(!game->west)
+		ft_error("Error: xpm file not found");
+	game->east = mlx_xpm_file_to_image(game->mlx, info->east,
+					&texture_width, &texture_height);	
+	if(!game->east)
+		ft_error("Error: xpm file not found");
+
 }
 
 void launch_game(t_info *info, t_game *game, t_player *player, t_img *img)

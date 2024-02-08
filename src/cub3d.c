@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:39:34 by about             #+#    #+#             */
-/*   Updated: 2024/01/29 23:00:55 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/08 15:07:32 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int main(int ac, char **av)
 	t_img		img;
 	
 	if (ac != 2)
-	{
-		write(2, "Error\nWrong number of arguments\n", 31);
-		return 1;
-	}
+		ft_error("Error: Wrong number of arguments");
 	info.map = readfile(av[1]);
 	if (!info.map)
 		ft_error("Empty file!");
