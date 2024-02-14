@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:41:08 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/08 16:45:24 by about            ###   ########.fr       */
+/*   Updated: 2024/02/14 19:01:20 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,35 +227,38 @@ int	get_xpm_color(void *texture, int x, int y, double wall_height)
 	texture_addr = mlx_get_data_addr(texture,
 			&bits_per_pixel, &size_line, &endian);
 
-	return (*(int *)(texture_addr + ((int)(y * (TILE / wall_height) ) * size_line + (x % TILE) * (bits_per_pixel / 8))));
+	return (*(int *)(texture_addr + ((int)(y * (TILE / wall_height) ) * size_line + (int)(fmod(x, TILE)) * (bits_per_pixel / 8))));
 }
 
 void render_3d_game(t_game *game, int j, int i)
 {
 	int l;
+	int end;
 
-	l = 0;
     init_val_3d(game, j, i);
-    while(l < game->player->top_pixel)
+	
+	l = 0;
+    
+	while(l < game->player->top_pixel)
     {
         my_mlx_pixel_put(game->img2, j,l, 255);
         l++;
     }
-    l = game->player->top_pixel;
-    while(l < game->player->bottom_pixel)
+	end = game->player->bottom_pixel;
+    while(l < end)
     {
 		if(game->map2[(int)((game->ray[j].wall_hit_y + 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == '0'
 		|| game->map2[(int)((game->ray[j].wall_hit_y + 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == 'W')
-        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->north, j, l - game->player->top_pixel, game->player->bottom_pixel - game->player->top_pixel));
+        	my_mlx_pixel_put(game->img2, j, l, get_xpm_color(game->north, game->ray[j].wall_hit_x, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
 		if(game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x + 1) / TILE)] == '0'
 		|| game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x + 1) / TILE)] == 'W')
-        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->south, j, l - game->player->top_pixel, game->player->bottom_pixel - game->player->top_pixel));
+        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->west, game->ray[j].wall_hit_y, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
 		if(game->map2[(int)((game->ray[j].wall_hit_y - 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == '0'
 		|| game->map2[(int)((game->ray[j].wall_hit_y - 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == 'W')
-        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->west, j, l - game->player->top_pixel, game->player->bottom_pixel - game->player->top_pixel));
+        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->south, game->ray[j].wall_hit_x, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
 		if(game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x - 1) / TILE)] == '0'
 		|| game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x - 1) / TILE)] == 'W')
-        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->east, j, l - game->player->top_pixel, game->player->bottom_pixel - game->player->top_pixel));
+        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->east, game->ray[j].wall_hit_y, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
         l++;
     }
     l = game->player->bottom_pixel;
@@ -265,7 +268,6 @@ void render_3d_game(t_game *game, int j, int i)
         l++;
     }
 }
-
 
 void drawplayer(t_game *game)
 {
