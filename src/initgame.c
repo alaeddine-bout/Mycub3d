@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:41:08 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/14 19:01:20 by about            ###   ########.fr       */
+/*   Updated: 2024/02/15 22:15:40 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void render_2map(t_game *game)
 				
 			}
 			if(ft_strchr("NSEW0", game->map2[y][x]))
-				draw_square(game->img2 ,x , y, 0xFFFFFF);
+				draw_square(game->img2 ,x , y, 0xF4ECC2);
 			x++;
 		}
 		y++;
@@ -241,7 +241,7 @@ void render_3d_game(t_game *game, int j, int i)
     
 	while(l < game->player->top_pixel)
     {
-        my_mlx_pixel_put(game->img2, j,l, 255);
+        my_mlx_pixel_put(game->img2, j,l, game->c_rgb);
         l++;
     }
 	end = game->player->bottom_pixel;
@@ -264,7 +264,7 @@ void render_3d_game(t_game *game, int j, int i)
     l = game->player->bottom_pixel;
     while(l < HEIGHT)
     {
-        my_mlx_pixel_put(game->img2, j,l, 0x2A1313);
+        my_mlx_pixel_put(game->img2, j,l, game->f_rgb);
         l++;
     }
 }
@@ -473,10 +473,20 @@ void	assign_textures(t_info *info, t_game *game)
 		ft_error("Error: xpm file not found");
 
 }
+int int_to_rgb(int r, int g, int b) {
+    return (r << 16) | (g << 8) | b;
+}
+
+void	rbg_converter(t_info *info, t_game *game)
+{
+	game->f_rgb = int_to_rgb(info->f_1.r, info->f_1.g, info->f_1.b);
+	game->c_rgb = int_to_rgb(info->c_1.r, info->c_1.g, info->c_1.b);
+}
 
 void launch_game(t_info *info, t_game *game, t_player *player, t_img *img)
 {
 	cutmap2(info, game);
+	rbg_converter(info, game);
 	init_player(game, player);
 	game->mlx = mlx_init();
 	assign_textures(info, game);

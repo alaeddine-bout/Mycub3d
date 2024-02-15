@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:44:09 by about             #+#    #+#             */
-/*   Updated: 2024/02/06 19:11:00 by about            ###   ########.fr       */
+/*   Updated: 2024/02/15 15:50:05 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ typedef struct s_game {
 	void		*west;
 	void		*east;
 	char		**map2;
+	int			f_rgb;
+	int			c_rgb;
 	int 	win_height;
 	int		win_width;
 	t_player	*player;
