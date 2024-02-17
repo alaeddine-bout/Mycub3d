@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:44:09 by about             #+#    #+#             */
-/*   Updated: 2024/02/15 15:50:05 by about            ###   ########.fr       */
+/*   Updated: 2024/02/16 15:56:50 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,38 +27,37 @@
 # define FANGLE 60 * (PI / 180)
 
 typedef struct s_ray {
-    float angle;
-    float distance;
-	float wall_hit_x;
-	float wall_hit_y;
-	int ver_hit;
-	int left_ray;
-	int right_ray;
-	int up_ray;
-	int down_ray;
-	int horiz;
-	int cont_wall_hit; 
-} t_ray;
+    float	angle;
+    float	distance;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	int		ver_hit;
+	int		left_ray;
+	int		right_ray;
+	int		up_ray;
+	int		down_ray;
+	int		horiz;
+	int		cont_wall_hit; 
+}	t_ray;
 
 typedef struct s_player {
-	float		x;
-	float		y;
-	float		xr;
-	float		yr;
+	float	x;
+	float	y;
+	float	xr;
+	float	yr;
 	float	radius;
 	float	player_angle;
 	int		sidemove;
 	int		rotation_move;
 	int		forwardmove;
 	float	rotation_dir;
-	float movespeed;
+	float	movespeed;
 	float	rotation_speed;
-	long pro_wall_h;
-	long top_pixel;
+	long	pro_wall_h;
+	long	top_pixel;
 	long	bottom_pixel;
-	int horizslid;
-	
-} t_player;
+	int		horizslid;
+}	t_player;
 
 typedef struct s_img {
 	void	*img;
@@ -79,20 +78,20 @@ typedef struct s_game {
 	char		**map2;
 	int			f_rgb;
 	int			c_rgb;
-	int 	win_height;
-	int		win_width;
+	int 		win_height;
+	int			win_width;
 	t_player	*player;
-	t_img *img;
-	t_img *img2;
-	int j;
-	t_ray ray[WIDTH];
-	int i;
+	t_img		*img;
+	t_img		*img2;
+	int			j;
+	t_ray		ray[WIDTH];
+	int			i;
 } t_game;
 
 typedef struct s_colors {
 	int	r;
 	int	g;
-	int b;
+	int	b;
 } t_colors;
 
 
@@ -118,7 +117,6 @@ typedef struct s_info {
 void	initial(t_info *info);
 void	free_all(t_info *info, t_game *game);
 void	double_free(char **line);
-void	parse_map(t_info *info);
 // parse textures
 char    **readfile(char *file);
 void    ft_error(char *error);
@@ -152,6 +150,6 @@ void	drawplayer(t_game *game);
 void	update_game(t_game *game);
 void	draw_rotated(t_game *game, int x, int y, double angle);
 void	assign_textures(t_info *info, t_game *game);
-int		 get_xpm_color(void *texture, int x, int y, double wall_height);
+int		get_xpm_color(void *texture, int x, int y, double wall_height);
 
 #endif

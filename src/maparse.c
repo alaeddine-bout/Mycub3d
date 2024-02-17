@@ -6,11 +6,11 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:42:55 by about             #+#    #+#             */
-/*   Updated: 2024/02/08 16:52:16 by about            ###   ########.fr       */
+/*   Updated: 2024/02/16 15:49:06 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"cub.h"
+#include "cub.h"
 
 void	check_map(char **map, int i, int *player)
 {
@@ -19,9 +19,9 @@ void	check_map(char **map, int i, int *player)
 	j = 0;
 	while (map[i][j])
 	{
-		if(ft_strchr("NSWE", map[i][j]))
+		if (ft_strchr("NSWE", map[i][j]))
 			(*player)++;
-		if(ft_strchr("NSEW0", map[i][j]))
+		if (ft_strchr("NSEW0", map[i][j]))
 		{
 			if (map[i + 1] && j > ft_strlen(map[i + 1]))
 				ft_error("Error: close map please!");
@@ -44,14 +44,15 @@ int	find_index(char **map)
 	int	i;
 	
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
-		if(map[i][0] == '1')
+		if (map[i][0] == '1')
 			break ;
 		i++;
 	}
-	return(i);
+	return (i);
 }
+
 void	cutmaputil(t_info *info, int i)
 {
 	int	j;
@@ -76,10 +77,10 @@ void	cutmaputil(t_info *info, int i)
 	info->map_2[x] = NULL;
 }
 
-void cutmap(t_info *info)
+void	cutmap(t_info *info)
 {
-	int i;
-	int x;
+	int	i;
+	int	x;
 
 	i = find_index(info->map);
 	x = 0;

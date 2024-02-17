@@ -1,7 +1,7 @@
-NO /nfs/homes/about/Documents/Mycub3d/textures/wall4.xpm
-SO /nfs/homes/about/Documents/Mycub3d/textures/wall3.xpm
-WE /nfs/homes/about/Documents/Mycub3d/textures/wall2.xpm
-EA /nfs/homes/about/Documents/Mycub3d/textures/wall1.xpm
+NO /nfs/homes/about/Documents/Mycub3d/textures/grass.xpm
+SO /nfs/homes/about/Documents/Mycub3d/textures/sand.xpm
+WE /nfs/homes/about/Documents/Mycub3d/textures/stone.xpm
+EA /nfs/homes/about/Documents/Mycub3d/textures/wood.xpm
 C 15,20,150
 F 100,100,50
 

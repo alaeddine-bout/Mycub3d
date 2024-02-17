@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:41:08 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/15 22:15:40 by about            ###   ########.fr       */
+/*   Updated: 2024/02/17 05:32:33 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	my_mlx_pixel_put(t_img *data, int x, int y, int color)
 	char	*dst;
 
 	if (y >= HEIGHT || x >= WIDTH || y <= 0 || x <= 0)
-		return;
+		return ;
 	dst = data->addr + (y * data->linelength + x * (data->bitspixel / 8));
 	*(unsigned int*)dst = color;
 }
 
 void draw_square(t_img *img, int x, int y, int color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-	while(i < TILE * 0.1)
+	while (i < TILE * 0.1)
 	{
 		j = 0;
 		while (j < TILE * 0.1)
@@ -44,22 +44,22 @@ void draw_square(t_img *img, int x, int y, int color)
 
 void render_2map(t_game *game)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
-	while(game->map2[y])
+	while (game->map2[y])
 	{
 		x = 0;
-		while(game->map2[y][x])
+		while (game->map2[y][x])
 		{
-			if(game->map2[y][x] == '1')
+			if (game->map2[y][x] == '1')
 			{
-				draw_square(game->img2, x, y, 0x808080);
+				draw_square(game->img2, x, y, 0xA020F0);
 				
 			}
-			if(ft_strchr("NSEW0", game->map2[y][x]))
-				draw_square(game->img2 ,x , y, 0xF4ECC2);
+			if (ft_strchr("NSEW0", game->map2[y][x]))
+				draw_square(game->img2 ,x , y, 0xFFFF00);
 			x++;
 		}
 		y++;
@@ -71,15 +71,15 @@ int linelen(char *str)
 	int i;
 
 	i = 0;
-	while(str[i] && str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 		i++;
 	return (i);
 }
 
 void get_player_pos(t_game *game, t_player *player)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	while (game->map2[y])
@@ -142,7 +142,7 @@ void init_player(t_game *game, t_player *player)
 	player->rotation_move = 0;
 	player->player_angle = PI / 2;
 	player->rotation_speed = 2 * (PI / 180) * 0.3;
-	player->movespeed = 1 ;
+	player->movespeed = 2;
 }
 
 int there_is_a_wall(t_game *game, float x, float y)
@@ -235,38 +235,36 @@ void render_3d_game(t_game *game, int j, int i)
 	int l;
 	int end;
 
-    init_val_3d(game, j, i);
-	
+	init_val_3d(game, j, i);
 	l = 0;
-    
-	while(l < game->player->top_pixel)
-    {
-        my_mlx_pixel_put(game->img2, j,l, game->c_rgb);
-        l++;
-    }
+	while (l < game->player->top_pixel)
+	{
+		my_mlx_pixel_put(game->img2, j,l, game->c_rgb);
+		l++;
+	}
 	end = game->player->bottom_pixel;
-    while(l < end)
-    {
-		if(game->map2[(int)((game->ray[j].wall_hit_y + 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == '0'
+	while (l < end)
+	{
+		if (game->map2[(int)((game->ray[j].wall_hit_y + 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == '0'
 		|| game->map2[(int)((game->ray[j].wall_hit_y + 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == 'W')
-        	my_mlx_pixel_put(game->img2, j, l, get_xpm_color(game->north, game->ray[j].wall_hit_x, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
-		if(game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x + 1) / TILE)] == '0'
+			my_mlx_pixel_put(game->img2, j, l, get_xpm_color(game->north, game->ray[j].wall_hit_x, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
+		if (game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x + 1) / TILE)] == '0'
 		|| game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x + 1) / TILE)] == 'W')
-        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->west, game->ray[j].wall_hit_y, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
-		if(game->map2[(int)((game->ray[j].wall_hit_y - 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == '0'
+			my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->west, game->ray[j].wall_hit_y, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
+		if (game->map2[(int)((game->ray[j].wall_hit_y - 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == '0'
 		|| game->map2[(int)((game->ray[j].wall_hit_y - 1) / TILE)][(int)(game->ray[j].wall_hit_x / TILE)] == 'W')
-        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->south, game->ray[j].wall_hit_x, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
-		if(game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x - 1) / TILE)] == '0'
+			my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->south, game->ray[j].wall_hit_x, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
+		if (game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x - 1) / TILE)] == '0'
 		|| game->map2[(int)(game->ray[j].wall_hit_y / TILE)][(int)((game->ray[j].wall_hit_x - 1) / TILE)] == 'W')
-        	my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->east, game->ray[j].wall_hit_y, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
-        l++;
-    }
-    l = game->player->bottom_pixel;
-    while(l < HEIGHT)
-    {
-        my_mlx_pixel_put(game->img2, j,l, game->f_rgb);
-        l++;
-    }
+			my_mlx_pixel_put(game->img2, j,l, get_xpm_color(game->east, game->ray[j].wall_hit_y, l + (game->player->pro_wall_h) / 2 - (HEIGHT / 2), game->player->pro_wall_h));
+		l++;
+	}
+	l = game->player->bottom_pixel;
+	while (l < HEIGHT)
+	{
+		my_mlx_pixel_put(game->img2, j,l, game->f_rgb);
+		l++;
+	}
 }
 
 void drawplayer(t_game *game)
@@ -436,7 +434,8 @@ int render(void *param)
 	game = (t_game *) param;
 
 	game->img2->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	game->img2->addr = mlx_get_data_addr(game->img2->img, &game->img2->bitspixel, &game->img2->linelength, &game->img2->end);
+	game->img2->addr = mlx_get_data_addr(game->img2->img,
+			&game->img2->bitspixel, &game->img2->linelength, &game->img2->end);
 	game->img = game->img2;
 	raycasting(game);
 	if(game->flag == 1)
@@ -450,6 +449,7 @@ int render(void *param)
 	update(game);
 	return(0);
 }
+
 void	assign_textures(t_info *info, t_game *game)
 {
 	int texture_height;

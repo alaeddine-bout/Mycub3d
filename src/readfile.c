@@ -6,11 +6,11 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:02:45 by about             #+#    #+#             */
-/*   Updated: 2024/02/08 16:52:04 by about            ###   ########.fr       */
+/*   Updated: 2024/02/16 15:50:18 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"cub.h"
+#include "cub.h"
 
 void	check_first(char *wall)
 {
@@ -20,7 +20,7 @@ void	check_first(char *wall)
 	while (wall[i])
 	{
 		if (wall[i] == '\n')
-			break;
+			break ;
 		if (wall[i] != '1' && wall[i] != ' ' && wall[i] != '\t')
 			ft_error("Error: map should be closed by walls");
 		i++;
@@ -44,8 +44,9 @@ char	*remove_spaces(char *line)
 
 void	cubname(char *filename, char *name, char *error)
 {
-	int len = ft_strlen(filename);
+	int	len;
 
+	len = ft_strlen(filename);
 	if (len < 4 || strcmp(filename + len - 4, name) != 0)
 		ft_error(error);
 }
@@ -55,7 +56,7 @@ char	**readutils(char *file, int i)
 	char	**mapped;
 	int		fd;
 	int		j;
-	
+
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_error("Could not open file.");
@@ -66,6 +67,7 @@ char	**readutils(char *file, int i)
 	close(fd);
 	return (mapped);
 }
+
 char	**readfile(char *file)
 {
 	int		fd;
@@ -82,7 +84,7 @@ char	**readfile(char *file)
 	{
 		tmp = get_next_line(fd);
 		if (tmp == NULL)
-			break;
+			break ;
 		free(tmp);
 		i++;
 	}

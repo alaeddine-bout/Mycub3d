@@ -6,17 +6,18 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:28:19 by about             #+#    #+#             */
-/*   Updated: 2024/02/08 16:24:03 by about            ###   ########.fr       */
+/*   Updated: 2024/02/16 15:48:55 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"cub.h"
+#include "cub.h"
 
 void	ft_error(char *error)
 {
 	ft_putendl_fd(error, 2);
 	exit(1);
 }
+
 void	free_all(t_info *info, t_game *game)
 {
 	free(info->north);
@@ -28,6 +29,7 @@ void	free_all(t_info *info, t_game *game)
 	double_free(info->map_2);
 	double_free(game->map2);
 }
+
 void	double_free(char **line)
 {
 	int	i;
@@ -37,6 +39,7 @@ void	double_free(char **line)
 		free(line[i++]);
 	free(line);
 }
+
 void	initial(t_info *info)
 {
 	info->west = NULL;
@@ -58,6 +61,7 @@ void	initial(t_info *info)
 	info->found_f = 0;
 	info->found_c = 0;
 }
+
 void	check_spaces(char *line)
 {
 	int	i;
