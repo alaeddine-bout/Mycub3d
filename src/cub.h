@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:44:09 by about             #+#    #+#             */
-/*   Updated: 2024/02/16 15:56:50 by about            ###   ########.fr       */
+/*   Updated: 2024/02/17 21:07:16 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,39 +25,31 @@
 # define HEIGHT 430
 # define PI 3.1415926535
 # define FANGLE 60 * (PI / 180)
+#define MOUSE_SENSITIVITY 0.001
 
-typedef struct s_ray {
-    float	angle;
-    float	distance;
-	float	wall_hit_x;
-	float	wall_hit_y;
-	int		ver_hit;
-	int		left_ray;
-	int		right_ray;
-	int		up_ray;
-	int		down_ray;
-	int		horiz;
-	int		cont_wall_hit; 
-}	t_ray;
 
 typedef struct s_player {
-	float	x;
-	float	y;
-	float	xr;
-	float	yr;
-	float	radius;
-	float	player_angle;
+	double		x;
+	double		y;
+	double	px;
+	double	py;
+	double	player_angle;
 	int		sidemove;
 	int		rotation_move;
 	int		forwardmove;
-	float	rotation_dir;
-	float	movespeed;
-	float	rotation_speed;
-	long	pro_wall_h;
-	long	top_pixel;
+	double	rotation_dir;
+	double movespeed;
+	double	rotation_speed;
+	long pro_wall_h;
+	long top_pixel;
 	long	bottom_pixel;
-	int		horizslid;
-}	t_player;
+	int horizslid;
+	char player;
+	int		mouse_x;
+	int		mouse_y;
+	
+} t_player;
+
 
 typedef struct s_img {
 	void	*img;
@@ -66,6 +58,7 @@ typedef struct s_img {
 	int		linelength;
 	int		end;
 }	t_img;
+
 typedef struct s_game {
 	int			flag;
 	void		*mlx;
@@ -76,16 +69,21 @@ typedef struct s_game {
 	void		*west;
 	void		*east;
 	char		**map2;
-	int			f_rgb;
-	int			c_rgb;
-	int 		win_height;
-	int			win_width;
+	int 	win_height;
+	int		win_width;
 	t_player	*player;
-	t_img		*img;
-	t_img		*img2;
-	int			j;
-	t_ray		ray[WIDTH];
-	int			i;
+	t_img *img;
+	t_img *img2;
+    double angle;
+	double distance;
+	double wall_hit_x;
+	double wall_hit_y;
+	int horiz;
+	int vert;
+	int		mx;
+	int		my;
+	int		f_rgb;
+	int		c_rgb;
 } t_game;
 
 typedef struct s_colors {
@@ -143,13 +141,13 @@ void	assignthis(char **texture, char *line, int *flag);
 // game graphics
 void    launch_game(t_info *info, t_game *game, t_player *player, t_img *img);
 void    render_2dmap(t_game *game);
-void	draw_square(t_img *img, int x, int y, int color);
+void	draw_square(t_game *game, int x, int y, int color);
 void	cutmap2(t_info *info, t_game *game);;
 void	get_player_pos(t_game *game, t_player *player);
 void	drawplayer(t_game *game);
 void	update_game(t_game *game);
 void	draw_rotated(t_game *game, int x, int y, double angle);
 void	assign_textures(t_info *info, t_game *game);
-int		get_xpm_color(void *texture, int x, int y, double wall_height);
+int		get_xpm_color(t_game *game, void *texture, int x, int y, double wall_height);
 
 #endif

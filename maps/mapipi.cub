@@ -1,0 +1,10 @@
+C 15,20,150
+F 100,100,50
+NO ./textures/fcb.xpm
+SO ./textures/fcb.xpm
+WE ./textures/fcb.xpm
+EA ./textures/fcb.xpm
+
+111 
+1S1
+111

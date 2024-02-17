@@ -1,9 +1,9 @@
-NO /nfs/homes/about/Documents/Mycub3d/textures/fcb.xpm
-SO /nfs/homes/about/Documents/Mycub3d/textures/fcb.xpm
-WE /nfs/homes/about/Documents/Mycub3d/textures/fcb.xpm
-EA /nfs/homes/about/Documents/Mycub3d/textures/fcb.xpm
-C 50,30,30
-F 225,255,255
+NO ./textures/fcb.xpm
+SO ./textures/fcb.xpm
+WE ./textures/fcb.xpm
+EA ./textures/fcb.xpm
+C 15,20,150
+F 100,100,50
 
 11111111111111111
 10000000000000001
