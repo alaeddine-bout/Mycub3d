@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initgame.c                                         :+:      :+:    :+:   */
+/*   initgame_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:41:08 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/18 22:31:38 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:24:48 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub_bonus.h"
 
 void	init_player(t_game *game, t_player *player)
 {
@@ -32,6 +32,33 @@ void	init_player(t_game *game, t_player *player)
 	player->movespeed = 1.5;
 }
 
+void	drawplayer(t_game *game)
+{
+	int	i;
+	int	j;
+	int	tile_x;
+	int	tile_y;
+
+	tile_x = WIDTH / 2 / game->mx;
+	tile_y = HEIGHT / 2 / game->my;
+	if (tile_x > 7)
+		tile_x = 7;
+	if (tile_y > 7)
+		tile_y = 7;
+	i = -1;
+	while (i < 1)
+	{
+		j = -1;
+		while (j < 2)
+		{
+			my_mlx_pixel_put(game->img2, ((game->player->x / 64) * tile_x) + i,
+				(game->player->y / 64) * tile_y + j, 0x0FF000);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	update(t_game *game)
 {
 	float	movestep;
@@ -46,8 +73,9 @@ void	update(t_game *game)
 	player_x = game->player->x + cos(game->player->player_angle) * movestep;
 	player_y = game->player->y + sin(game->player->player_angle) * movestep;
 	sidestep = game->player->sidemove * game->player->movespeed;
-	move_player(game, player_x, player_y);
+	move_player(game, player_x, player_y, movestep);
 	move_to_sides(game, sidestep);
+	use_mouse(game);
 }
 
 void	launch_game(t_info *info, t_game *game, t_player *player, t_img *img)

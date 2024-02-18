@@ -46,7 +46,6 @@ ${NAME} : ${OBJ}
 
 %.o:%.c
 	@gcc ${CFLAGS} -c $< -o $@
-	@echo "$@ \r\t\t\t is compiled"
 
 clean :
 	@rm -f ${OBJ}

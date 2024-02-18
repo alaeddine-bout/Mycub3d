@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 21:12:22 by about             #+#    #+#             */
-/*   Updated: 2023/11/25 14:37:43 by about            ###   ########.fr       */
+/*   Updated: 2024/02/14 09:45:28 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
-
+#include "stdio.h"
 size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
+	if(!str)
+		return(0);
 	while (str[i])
 		i++;
 	return (i);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maparse.c                                          :+:      :+:    :+:   */
+/*   maparse_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:42:55 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 22:36:07 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:24:45 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "cub_bonus.h"
 
 void	check_map(char **map, int i, int *player)
 {
@@ -21,18 +21,18 @@ void	check_map(char **map, int i, int *player)
 	{
 		if (ft_strchr("NSWE", map[i][j]))
 			(*player)++;
-		if (ft_strchr("NSEW0", map[i][j]))
+		if (ft_strchr("NSEW0D", map[i][j]))
 		{
 			if (map[i + 1] && j > ft_strlen(map[i + 1]))
 				ft_error("Error: close map please!");
 			if (j <= ft_strlen(map[i]) - 1 && (!map[i - 1][j]
-				|| !ft_strchr("NSEW01", map[i - 1][j])))
+				|| !ft_strchr("NSEW01D", map[i - 1][j])))
 				ft_error("Error: invalid map!");
-			if (!ft_strchr("NSEW01", map[i + 1][j]))
+			if (!ft_strchr("NSEW01D", map[i + 1][j]))
 				ft_error("Error: that shouldn't be there!");
-			if (!ft_strchr("NSEW01", map[i][j + 1]))
+			if (!ft_strchr("NSEW0D1", map[i][j + 1]))
 				ft_error("Error: map should be surrounded by walls");
-			if (j > 0 && !ft_strchr("NSEW01", map[i][j - 1]))
+			if (j > 0 && !ft_strchr("NSEW01D", map[i][j - 1]))
 				ft_error("Error: that shouldn't be there either");
 		}
 		j++;

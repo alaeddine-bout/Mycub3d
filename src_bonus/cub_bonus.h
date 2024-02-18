@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:44:09 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 22:37:08 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:07:20 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#ifndef CUB_BONUS_H
+# define CUB_BONUS_H
 
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
@@ -100,6 +100,9 @@ typedef struct s_game
 	int			my;
 	int			f_rgb;
 	int			c_rgb;
+	int			mouse_flag;
+	int			door;
+	int			door_flag;
 }				t_game;
 
 typedef struct s_colors
@@ -173,7 +176,8 @@ void			render_2map(t_game *game);
 float			normalize_angle(float ray_angle);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int				there_is_a_wall(t_game *game, float x, float y);
-void			move_player(t_game *game, float player_x, float player_y);
+void			move_player(t_game *game, float player_x, float player_y,
+					float movestep);
 void			move_to_sides(t_game *game, float sidestep);
 int				key_release(int keycode, void *param);
 int				key_press(int keycode, void *param);
