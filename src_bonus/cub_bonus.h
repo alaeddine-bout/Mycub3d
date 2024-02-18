@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:44:09 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 22:07:20 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 00:03:22 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ void			parse_colors_c(char *line, t_info *info, int *flag);
 void			parse_colors_f(char *line, t_info *info, int *flag);
 void			check_missing(t_info *info);
 int				conditions(t_info *info, int j);
+void			check_num(char **line);
 // parse map
 int				find_index(char **map);
 void			cutmap(t_info *info);

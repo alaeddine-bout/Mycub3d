@@ -17,6 +17,7 @@ SRCS = 	./src/cub3d.c\
 		./src/raycasting.c\
 		./src/render.c\
 		./src/utils2.c\
+		./src/utils3.c\
 
 BONUS = ./src_bonus/cub3d_bonus.c\
 		./src_bonus/readfile_bonus.c\
@@ -32,6 +33,7 @@ BONUS = ./src_bonus/cub3d_bonus.c\
 		./src_bonus/raycasting_bonus.c\
 		./src_bonus/render_bonus.c\
 		./src_bonus/utils2_bonus.c\
+		./src_bonus/utils3_bonus.c\
 
 CC = cc
 

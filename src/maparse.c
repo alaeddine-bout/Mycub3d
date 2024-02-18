@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maparse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:42:55 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 22:36:07 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/18 23:46:37 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ void	check_map(char **map, int i, int *player)
 		if (ft_strchr("NSEW0", map[i][j]))
 		{
 			if (map[i + 1] && j > ft_strlen(map[i + 1]))
-				ft_error("Error: close map please!");
+				ft_error("\033[1;31mError: close map please!\033[0m");
 			if (j <= ft_strlen(map[i]) - 1 && (!map[i - 1][j]
 				|| !ft_strchr("NSEW01", map[i - 1][j])))
-				ft_error("Error: invalid map!");
+				ft_error("\033[1;31mError: invalid map!\033[0m");
 			if (!ft_strchr("NSEW01", map[i + 1][j]))
-				ft_error("Error: that shouldn't be there!");
+				ft_error("\033[1;31mError: that shouldn't be there!\033[0m");
 			if (!ft_strchr("NSEW01", map[i][j + 1]))
-				ft_error("Error: map should be surrounded by walls");
+				ft_error("\033[1;31mError: Map not properly closed.\033[0m");
 			if (j > 0 && !ft_strchr("NSEW01", map[i][j - 1]))
-				ft_error("Error: that shouldn't be there either");
+				ft_error("\033[1;31mError: Unexpected elements in map.\033[0m");
 		}
 		j++;
 	}
@@ -105,7 +105,7 @@ void	parse_map(t_info *info)
 	while (info->map_2[i])
 	{
 		if (info->map_2[i][0] == '0' || info->map_2[i][0] == '\0')
-			ft_error("Error: Errror: invalid map!");
+			ft_error("\033[1;31mError: Errror: invalid map!\033[0m");
 		if (i == 0)
 			check_first(info->map_2[i]);
 		else if (!info->map_2[i + 1])
@@ -113,9 +113,9 @@ void	parse_map(t_info *info)
 		else
 			check_map(info->map_2, i, &player);
 		if (info->map_2[i][ft_strlen(info->map_2[i])] == '0')
-			ft_error("Error: invalid map!");
+			ft_error("\033[1;31mError: invalid map!\033[0m");
 		i++;
 	}
 	if (player != 1)
-		ft_error("Error: There must be only one player");
+		ft_error("\033[1;31mError: There must be only one player\033[0m");
 }

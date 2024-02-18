@@ -3,31 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:35:29 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/18 22:33:07 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 00:07:13 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub_bonus.h"
 
-void	cutmap2(t_info *info, t_game *game)
+void	cutmap2_utils(t_info *info, t_game *game, int i)
 {
-	int	i;
-	int	x;
 	int	j;
+	int	x;
 	int	len;
 
-	i = find_index(info->map);
-	x = 0;
-	while (info->map[i])
-	{
-		i++;
-		x++;
-	}
-	game->map2 = (char **)malloc(sizeof(char *) * (x + 1));
-	i = find_index(info->map);
 	x = 0;
 	while (info->map[i])
 	{
@@ -44,6 +34,23 @@ void	cutmap2(t_info *info, t_game *game)
 		x++;
 	}
 	game->map2[x] = NULL;
+}
+
+void	cutmap2(t_info *info, t_game *game)
+{
+	int	i;
+	int	x;
+
+	i = find_index(info->map);
+	x = 0;
+	while (info->map[i])
+	{
+		i++;
+		x++;
+	}
+	game->map2 = (char **)malloc(sizeof(char *) * (x + 1));
+	i = find_index(info->map);
+	cutmap2_utils(info, game, i);
 }
 
 int	get_xpm_color(t_game *game, void *texture, int x, int y)
@@ -87,19 +94,4 @@ int	linelen(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	return (i);
-}
-
-void	map_size(t_game *game)
-{
-	int	y;
-
-	y = 0;
-	game->mx = linelen(game->map2[y]);
-	while (game->map2[y] && game->map2[y][0] != '\n')
-	{
-		if (game->map2[y][0] != '\0' && game->mx < linelen(game->map2[y + 1]))
-			game->mx = linelen(game->map2[y + 1]);
-		y++;
-	}
-	game->my = y;
 }

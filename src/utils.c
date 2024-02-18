@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:28:19 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 21:54:00 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/18 23:41:46 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	check_spaces(char *line)
 		if (j == 1 && (line[i] == ' ' || line[i] == '\t'))
 		{
 			if (line[i + 1] && ft_isdigit(line[i + 1]))
-				ft_error("Error: ivalid color format!");
+				ft_error("\033[1;35mError: ivalid color format!\033[0m");
 		}
 		i++;
 	}

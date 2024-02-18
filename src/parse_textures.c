@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:26:07 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 21:53:41 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/18 23:51:19 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@ char	*parse_path(char *line)
 		path++;
 	while (len > 0 && (path[len - 1] == ' ' || path[len - 1] == '\n'))
 		path[--len] = '\0';
-	cubname(path, ".xpm", "Error: textures must be in '.xpm' format");
+	cubname(path, ".xpm", "\033[1;31mError: Textures must be '.xpm'.\033[0m");
 	return (path);
 }
 
 void	check_missing(t_info *info)
 {
 	if (!info->north || !info->south || !info->west || !info->east)
-		ft_error("Error: Missing texture path(s)");
+		ft_error("\033[1;31mError: Missing texture path(s)\033[0m");
 	else if (!info->floor || !info->ceiling)
-		ft_error("Error: Missing color");
+		ft_error("\033[1;31mError: Missing color\033[0m");
 }
 
 void	assignthis(char **texture, char *line, int *flag)
 {
 	if (*flag)
-		ft_error("Error: duplicated texture!");
+		ft_error("\033[1;31mError: duplicated texture!\033[0m");
 	*texture = parse_path(line);
 	*flag = 1;
 }

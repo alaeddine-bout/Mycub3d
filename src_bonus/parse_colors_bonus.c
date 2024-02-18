@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:26:22 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 22:24:43 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 00:09:00 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ void	parse_colors_f(char *line, t_info *info, int *flag)
 			comma_count++;
 			if (comma_count > 2)
 			{
-				ft_error("Error: invalid floor color format");
+				ft_error("\033[1;31mError: invalid floor color format\033[0m");
 				return ;
 			}
 		}
 	}
 	if (*flag)
-		ft_error("Error: duplicated floor color!");
+		ft_error("\033[1;31mError: duplicated floor color!\033[0m");
 	info->floor = ft_split(line + 2, ',');
 	if (parse_rgb(info->floor, info, 0) != 0)
-		ft_error("Error : Invalid floor color");
+		ft_error("\033[1;31mError : Invalid floor color\033[0m");
 	*flag = 1;
 	return ;
 }
@@ -54,16 +54,16 @@ void	parse_colors_c(char *line, t_info *info, int *flag)
 			comma_count++;
 			if (comma_count > 2)
 			{
-				ft_error("Error: invalid floor color format");
+				ft_error("\033[1;31mError: invalid floor color format\033[0m");
 				return ;
 			}
 		}
 	}
 	if (*flag)
-		ft_error("Error: duplicated ceiling color!");
+		ft_error("\033[1;31mError: duplicated ceiling color!\033[0m");
 	info->ceiling = ft_split(line + 2, ',');
 	if (parse_rgb(info->ceiling, info, 1) != 0)
-		ft_error("Error : Invalid ceiling color");
+		ft_error("\033[1;31mError : Invalid ceiling color\033[0m");
 	*flag = 1;
 	return ;
 }
@@ -90,7 +90,10 @@ int	parse_rgb(char **line, t_info *info, int flag)
 		{
 			if (!ft_isdigit(line[i][j]) && (line[i][j] != ' '
 				&& line[i][j] != '\n'))
-				return (ft_error("Error : invalid color format!"), 1);
+			{
+				ft_error("\033[1;31mError : invalid color format!\033[0m");
+				return (1);
+			}
 			if (!line[i][j])
 				break ;
 			j++;
@@ -101,15 +104,19 @@ int	parse_rgb(char **line, t_info *info, int flag)
 	return (0);
 }
 
-void	check_fill(char **line, int *r, int *g, int *b)
+void	check_num(char **line)
 {
-	*r = ft_atoi(line[0]);
-	if (*r < 0 || *r > 255)
-		ft_error("Error: invalid range");
-	*g = ft_atoi(line[1]);
-	if (*g < 0 || *g > 255)
-		ft_error("Error: invalid range");
-	*b = ft_atoi(line[2]);
-	if (*b < 0 || *b > 255)
-		ft_error("Error: invalid range");
+	int	i;
+	int	j;
+
+	j = 0;
+	while (line[j])
+	{
+		i = 0;
+		while (line[j][i] == ' ')
+			i++;
+		if (line[j][i] == '\n' || !line[j][i] || line[j] == NULL)
+			ft_error("\033[1;31mError: Empty color\033[0m");
+		j++;
+	}
 }

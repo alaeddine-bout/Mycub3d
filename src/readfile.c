@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readfile.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:02:45 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 21:53:52 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/18 23:41:17 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_first(char *wall)
 		if (wall[i] == '\n')
 			break ;
 		if (wall[i] != '1' && wall[i] != ' ' && wall[i] != '\t')
-			ft_error("Error: map should be closed by walls");
+			ft_error("\033[1;31mError: map should be closed by walls\033[0m");
 		i++;
 	}
 }
@@ -59,7 +59,7 @@ char	**readutils(char *file, int i)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error("Could not open file.");
+		ft_error("\033[1;31mCould not open file.\033[0m");
 	mapped = malloc(sizeof(char *) * (i + 1));
 	j = 0;
 	while (j <= i)
@@ -75,10 +75,11 @@ char	**readfile(char *file)
 	char	**mapped;
 	char	*tmp;
 
-	cubname(file, ".cub", "Error: The filename must be in .cub format");
+	cubname(file, ".cub",
+		"\033[1;31mError: The filename must be in .cub format\033[0m");
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error("Could not open file.");
+		ft_error("\033[1;31mCould not open file.\033[0m");
 	i = 0;
 	while (1)
 	{
