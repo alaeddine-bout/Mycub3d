@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:44:09 by about             #+#    #+#             */
-/*   Updated: 2024/02/19 00:03:22 by about            ###   ########.fr       */
+/*   Updated: 2024/02/19 01:35:54 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,6 @@ int				get_xpm_color(t_game *game, void *texture, int x, int y);
 void			map_size(t_game *game);
 int				linelen(char *str);
 void			my_mlx_pixel_put(t_img *data, int x, int y, int color);
+void			mini_tile(t_game *game, int *tile_x, int *tile_y);
 
 #endif

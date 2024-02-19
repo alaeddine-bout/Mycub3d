@@ -6,16 +6,25 @@
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:41:08 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/18 22:24:48 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:54:01 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
+int	ft_exit(t_game *game)
+{
+	(void) game;
+	ft_error("\033[1;35mGAME OVER.\033[0m");
+	return (1);
+}
+
 void	init_player(t_game *game, t_player *player)
 {
 	get_player_pos(game, player);
 	map_size(game);
+	game->door = 0;
+	player->horizslid = 1;
 	player->fangle = 60 * (PI / 180);
 	player->forwardmove = 0;
 	player->sidemove = 0;
@@ -29,7 +38,7 @@ void	init_player(t_game *game, t_player *player)
 	if (player->player == 'N')
 		player->player_angle = 3 * PI / 2;
 	player->rotation_speed = 2 * (PI / 180) * 0.8;
-	player->movespeed = 1.5;
+	player->movespeed = 3;
 }
 
 void	drawplayer(t_game *game)
@@ -90,6 +99,7 @@ void	launch_game(t_info *info, t_game *game, t_player *player, t_img *img)
 	game->img2 = img;
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, key_release, game);
+	mlx_hook(game->win, 17, 0, ft_exit, game);
 	mlx_loop_hook(game->mlx, render, game);
 	mlx_loop(game->mlx);
 }

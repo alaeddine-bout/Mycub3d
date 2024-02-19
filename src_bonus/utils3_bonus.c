@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   utils3_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 00:02:34 by about             #+#    #+#             */
-/*   Updated: 2024/02/19 00:10:24 by about            ###   ########.fr       */
+/*   Updated: 2024/02/19 01:35:34 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
+
+void	mini_tile(t_game *game, int *tile_x, int *tile_y)
+{
+	*tile_x = WIDTH / 2 / game->mx;
+	*tile_y = HEIGHT / 2 / game->my;
+	if (*tile_x > 7)
+		*tile_x = 7;
+	if (*tile_y > 7)
+		*tile_y = 7;
+}
 
 void	map_size(t_game *game)
 {

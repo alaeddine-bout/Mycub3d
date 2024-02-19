@@ -6,7 +6,7 @@
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:06:26 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/18 22:33:58 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:53:45 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	key_press_norm(int keycode, t_game *game)
 {
 	if (keycode == 65307)
-		exit(1);
+		ft_error("\033[1;35mGAME OVER.\033[0m");
 	if (keycode == 111 && game->map2[(int)game->player->y
 			/ TILE][(int)game->player->x / TILE] != 'D')
 		game->door = 1;

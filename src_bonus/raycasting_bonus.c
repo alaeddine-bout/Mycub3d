@@ -6,7 +6,7 @@
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:10:22 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/18 22:24:30 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:54:46 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ float	normalize_angle(float ray_angle)
 
 int	there_is_a_wall(t_game *game, float x, float y)
 {
-	if (x < 0 || y < 0 || x > WIDTH * TILE || y > HEIGHT * TILE)
+	if (x / TILE < 0 || y / TILE < 0 || x / TILE > WIDTH || y / TILE > HEIGHT)
 		return (1);
 	if (floor(y - 0.5) / TILE >= 0 && game->map2[(int)floor((y - 0.5)
 				/ TILE)][(int)(x / TILE)] == '1')

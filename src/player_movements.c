@@ -6,7 +6,7 @@
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:06:26 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/18 22:29:35 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:25:47 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	key_release(int keycode, void *param)
 
 	game = (t_game *)param;
 	if (keycode == 65307)
-		exit(1);
+		ft_error("\033[1;35mGAME OVER.\033[0m");
 	if (keycode == 100)
 		game->player->sidemove = 0;
 	if (keycode == 97)

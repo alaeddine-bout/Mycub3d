@@ -1,7 +1,7 @@
-NO /nfs/homes/about/Documents/Mycub3d/textures/grass.xpm
-SO /nfs/homes/about/Documents/Mycub3d/textures/sand.xpm
-WE /nfs/homes/about/Documents/Mycub3d/textures/stone.xpm
-EA /nfs/homes/about/Documents/Mycub3d/textures/wood.xpm
+NO ./textures/5.xpm
+SO ./textures/6.xpm
+WE ./textures/7.xpm
+EA ./textures/8.xpm
 C 15,20,150
 F 100,100,50
 
@@ -9,7 +9,7 @@ F 100,100,50
 1000001110000000000000000000000011111
 1000001 10000000000000000000000000001
 1000001110000000111111111111111111111
-10000011101111111
+100000111D1111111
 1000000000001
 111111111100111111111111111
 111110000000000000000000001

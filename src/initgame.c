@@ -6,11 +6,18 @@
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:41:08 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/18 22:31:38 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:27:56 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+int	ft_exit(t_game *game)
+{
+	(void) game;
+	ft_error("\033[1;35mGAME OVER.\033[0m");
+	return (1);
+}
 
 void	init_player(t_game *game, t_player *player)
 {
@@ -62,6 +69,7 @@ void	launch_game(t_info *info, t_game *game, t_player *player, t_img *img)
 	game->img2 = img;
 	mlx_hook(game->win, 2, 1L << 0, key_press, game);
 	mlx_hook(game->win, 3, 1L << 1, key_release, game);
+	mlx_hook(game->win, 17, 0, ft_exit, game);
 	mlx_loop_hook(game->mlx, render, game);
 	mlx_loop(game->mlx);
 }

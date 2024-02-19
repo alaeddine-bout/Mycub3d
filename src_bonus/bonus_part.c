@@ -6,7 +6,7 @@
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 18:50:55 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/18 22:28:08 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 01:37:40 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,7 @@ void	draw_rays(t_game *game)
 	int		tile_y;
 
 	j = 0;
-	tile_x = WIDTH / 2 / game->mx;
-	tile_y = HEIGHT / 2 / game->my;
-	if (tile_x > 7)
-		tile_x = 7;
-	if (tile_y > 7)
-		tile_y = 7;
+	mini_tile(game, &tile_x, &tile_y);
 	angle = normalize_angle(game->player->player_angle
 			- (game->player->fangle / 2));
 	while (j < WIDTH)
@@ -99,12 +94,7 @@ void	draw_square(t_game *game, int x, int y, int color)
 	int	j;
 
 	i = 0;
-	tile_x = WIDTH / 2 / game->mx;
-	tile_y = HEIGHT / 2 / game->my;
-	if (tile_x > 7)
-		tile_x = 7;
-	if (tile_y > 7)
-		tile_y = 7;
+	mini_tile(game, &tile_x, &tile_y);
 	if (game->mx * tile_x > WIDTH / 2)
 		tile_x = tile_y;
 	if (game->my * tile_y > HEIGHT / 2)
