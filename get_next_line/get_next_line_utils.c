@@ -10,15 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include "get_next_line.h"
 #include "stdio.h"
+
 size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
 	i = 0;
-	if(!str)
-		return(0);
+	if (!str)
+		return (0);
 	while (str[i])
 		i++;
 	return (i);
@@ -67,7 +68,7 @@ char	*ft_str_join(char *s1, char *s2)
 		j++;
 	}
 	p[i + j] = '\0';
-	free (s1);
+	free(s1);
 	return (p);
 }
 

@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-static	int	sstart(const char *str, char c, int i)
+static int	sstart(const char *str, char c, int i)
 {
 	while (str[i] && str[i] == c)
 		i++;
 	return (i);
 }
 
-static	int	ft_len(const char *str, char c, int len)
+static int	ft_len(const char *str, char c, int len)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ static	int	ft_len(const char *str, char c, int len)
 	return (i);
 }
 
-static	int	ft_fstr(const char *s, char c)
+static int	ft_fstr(const char *s, char c)
 {
 	int	i;
 	int	j;
@@ -49,7 +49,7 @@ static	int	ft_fstr(const char *s, char c)
 	return (j);
 }
 
-static	char	**ft_free_str(char **str, size_t i)
+static char	**ft_free_str(char **str, size_t i)
 {
 	while (i > 0)
 	{
@@ -72,7 +72,7 @@ char	**ft_split(char const *s, char c)
 	len = 0;
 	if (!s)
 		return (0);
-	str = ft_calloc((ft_fstr (s, c) + 1), sizeof (char *));
+	str = ft_calloc((ft_fstr(s, c) + 1), sizeof(char *));
 	if (!str)
 		return (0);
 	while (start + len < ft_strlen(s))

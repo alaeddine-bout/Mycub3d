@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 int	is_space(char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\f' || c == '\r' || c == '\v');
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\f' || c == '\r'
+		|| c == '\v');
 }
 
 int	ft_atoi(const char *str)

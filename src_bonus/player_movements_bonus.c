@@ -6,7 +6,7 @@
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:06:26 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/19 01:53:45 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 02:28:29 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	key_press_norm(int keycode, t_game *game)
 {
 	if (keycode == 65307)
 		ft_error("\033[1;35mGAME OVER.\033[0m");
-	if (keycode == 111 && game->map2[(int)game->player->y
+	if (keycode == 65362 && game->map2[(int)game->player->y
 			/ TILE][(int)game->player->x / TILE] != 'D')
 		game->door = 1;
-	if (keycode == 112 && game->map2[(int)game->player->y
+	if (keycode == 65364 && game->map2[(int)game->player->y
 			/ TILE][(int)game->player->x / TILE] != 'D')
 		game->door = 0;
-	if (keycode == 102)
+	if (keycode == 65289)
 		game->flag = 1;
-	if (keycode == 114)
+	if (keycode == 113)
 		game->flag = 0;
-	if (keycode == 110)
+	if (keycode == 65421)
 		game->mouse_flag = 1;
-	if (keycode == 109)
+	if (keycode == 65439)
 		game->mouse_flag = 0;
 }
 
@@ -64,8 +64,6 @@ int	key_release(int keycode, void *param)
 	t_game	*game;
 
 	game = (t_game *)param;
-	if (keycode == 65307)
-		exit(1);
 	if (keycode == 100)
 		game->player->sidemove = 0;
 	if (keycode == 97)

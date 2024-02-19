@@ -1,6 +1,6 @@
-NAME = cub3d
+NAME = cub3D
 
-BONUS_NAME = cub3d_bonus
+BONUS_NAME = cub3D_bonus
 
 CFLAGS = -Wall -Wextra -Werror -O3 -Ofast -fsanitize=address -g3
 

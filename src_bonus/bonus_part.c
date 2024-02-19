@@ -6,7 +6,7 @@
 /*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 18:50:55 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/19 01:37:40 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 02:27:55 by rabou-rk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,13 +123,11 @@ void	render_2map(t_game *game)
 		while (game->map2[y][x])
 		{
 			if (game->map2[y][x] == '1')
-			{
 				draw_square(game, x, y, 0x808080);
-			}
+			if (game->map2[y][x] == 'D')
+				draw_square(game, x, y, 0xF4B31F);
 			if (ft_strchr("NSEW0", game->map2[y][x]))
-			{
 				draw_square(game, x, y, 0x82bc0000);
-			}
 			x++;
 		}
 		y++;
