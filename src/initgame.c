@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initgame.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/03 17:41:08 by rabou-rk          #+#    #+#             */
-/*   Updated: 2024/02/19 01:27:56 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 05:33:04 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	update(t_game *game)
 
 void	launch_game(t_info *info, t_game *game, t_player *player, t_img *img)
 {
-	cutmap2(info, game);
 	rbg_converter(info, game);
 	init_player(game, player);
 	game->mlx = mlx_init();

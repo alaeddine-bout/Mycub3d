@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 00:02:34 by about             #+#    #+#             */
-/*   Updated: 2024/02/19 01:35:34 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:06:06 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,17 @@ void	check_fill(char **line, int *r, int *g, int *b)
 	*b = ft_atoi(line[2]);
 	if (*b < 0 || *b > 255)
 		ft_error("Error: invalid range");
+}
+
+void	last_line(t_info *info)
+{
+	int	i;
+
+	i = 0;
+	if(!info->map_2[i])
+		ft_error("\033[1;31mError: empty map!\033[0m");
+	while (info->map_2[i + 1])
+		i++;
+	if (info->map_2[i][0] != '1' && info->map_2[i][0] != ' ')
+		ft_error("\033[1;31mError: map always has to be the last\033[0m");
 }

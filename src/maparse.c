@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:42:55 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 23:46:37 by about            ###   ########.fr       */
+/*   Updated: 2024/02/19 05:04:46 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,15 @@ void	check_map(char **map, int i, int *player)
 int	find_index(char **map)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (map[i])
 	{
-		if (map[i][0] == '1')
+		j = 0;
+		while (map[i][j] == ' ')
+			j++;
+		if (map[i][j] == '1')
 			break ;
 		i++;
 	}
@@ -92,6 +96,7 @@ void	cutmap(t_info *info)
 	info->map_2 = (char **)malloc(sizeof(char *) * (x + 1));
 	i = find_index(info->map);
 	cutmaputil(info, i);
+	last_line(info);
 }
 
 void	parse_map(t_info *info)
@@ -101,7 +106,6 @@ void	parse_map(t_info *info)
 
 	i = 0;
 	player = 0;
-	cutmap(info);
 	while (info->map_2[i])
 	{
 		if (info->map_2[i][0] == '0' || info->map_2[i][0] == '\0')

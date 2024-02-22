@@ -6,7 +6,7 @@
 /*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:39:34 by about             #+#    #+#             */
-/*   Updated: 2024/02/18 23:14:37 by about            ###   ########.fr       */
+/*   Updated: 2024/02/19 05:33:21 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error("\033[1;31mError: Wrong number of arguments\033[0m");
 	info.map = readfile(av[1]);
+	cutmap(&info);
+	cutmap2(&info, &game);
 	if (!info.map)
 		ft_error("\033[1;31mEmpty file!\033[0m");
 	(initial(&info), parse_textures(&info), check_missing(&info));

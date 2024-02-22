@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rabou-rk <rabou-rk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: about <about@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:44:09 by about             #+#    #+#             */
-/*   Updated: 2024/02/19 01:35:54 by rabou-rk         ###   ########.fr       */
+/*   Updated: 2024/02/19 05:01:33 by about            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void			parse_map(t_info *info);
 void			check_missing(t_info *info);
 char			*parse_path(char *line);
 void			assignthis(char **texture, char *line, int *flag);
+void			last_line(t_info *info);
 // game graphics
 void			launch_game(t_info *info, t_game *game, t_player *player,
 					t_img *img);
